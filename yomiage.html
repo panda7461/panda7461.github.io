@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>日本語テキスト読み上げアプリ</title>
+</head>
+<body>
+    <h1>日本語テキスト読み上げアプリ</h1>
+    <textarea id="text-input" rows="4" cols="50"></textarea>
+    <br>
+    <button id="speak-button">読み上げ</button>
+
+    <script>
+        document.getElementById('speak-button').addEventListener('click', function() {
+            const textInput = document.getElementById('text-input');
+            const text = textInput.value;
+            const utterance = new SpeechSynthesisUtterance(text);
+
+            // 日本語の読み上げを選択
+            const voices = speechSynthesis.getVoices();
+            const japaneseVoice = voices.find(voice => voice.lang === 'ja-JP');
+            if (japaneseVoice) {
+                utterance.voice = japaneseVoice;
+            }
+
+            speechSynthesis.speak(utterance);
+        });
+    </script>
+</body>
+</html>
