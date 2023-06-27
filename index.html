@@ -4,33 +4,37 @@
     </head>
     <body>
         <h1>testpage</h1>
+
           <div id="json-container">
     <pre id="json-data"></pre>
   </div>
-        <script>
-            function getJsonData(url) {
-  return new Promise(function(resolve, reject) {
-    var request = new XMLHttpRequest();
-    request.open('GET', url, true);
 
-    request.onload = function() {
-      if (request.status >= 200 && request.status < 400) {
-        var jsonData = JSON.parse(request.responseText);
-        resolve(jsonData);
-      } else {
-        reject(new Error('Request failed with status code: ' + request.status));
-      }
-    };
+  <script>
+    // 外部APIのURL
+    var apiUrl = 'https://app.supersimpleservice.com/890ee6f79800c255dc7d/variable/api/v1/hyXApYlgT5aTfuJ-YWoOCw';
 
-    request.onerror = function() {
-      reject(new Error('Request failed.'));
-    };
+    // JSONデータを取得して表示する関数
+    function displayJsonData(url) {
+      fetch(url)
+        .then(function(response) {
+          if (!response.ok) {
+            throw new Error('APIリクエストが失敗しました。ステータスコード: ' + response.status);
+          }
+          return response.json();
+        })
+        .then(function(jsonData) {
+          // JSONデータを表示する
+          document.getElementById('json-data').textContent = JSON.stringify(jsonData, null, 2);
+        })
+        .catch(function(error) {
+          // エラーハンドリング
+          console.error('エラー:', error);
+        });
+    }
 
-    request.send();
-  });
-}
-
-    document.getElementById("json-data").textContent = JSON.stringify(getJsonData("https://app.supersimpleservice.com/890ee6f79800c255dc7d/variable/api/v1/hyXApYlgT5aTfuJ-YWoOCw"), null, 2);
-</script>
+    // JSONデータを取得して表示する
+    displayJsonData(apiUrl);
+  </script>
+    
     </body>
 </html>
