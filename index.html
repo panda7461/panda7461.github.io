@@ -5,36 +5,6 @@
     <body>
         <h1>testpage</h1>
 
-          <div id="json-container">
-    <pre id="json-data"></pre>
-  </div>
-
-  <script>
-    // 外部APIのURL
-    var apiUrl = 'https://app.supersimpleservice.com/890ee6f79800c255dc7d/variable/api/v1/hyXApYlgT5aTfuJ-YWoOCw';
-
-    // JSONデータを取得して表示する関数
-    function displayJsonData(url) {
-      fetch(url)
-        .then(function(response) {
-          if (!response.ok) {
-            throw new Error('APIリクエストが失敗しました。ステータスコード: ' + response.status);
-          }
-          return response.json();
-        })
-        .then(function(jsonData) {
-          // JSONデータを表示する
-          document.getElementById('json-data').textContent = JSON.stringify(jsonData, null, 2);
-        })
-        .catch(function(error) {
-          // エラーハンドリング
-          console.error('エラー:', error);
-        });
-    }
-
-    // JSONデータを取得して表示する
-    displayJsonData(apiUrl);
-  </script>
-    
+        <p>this is test page.</p>
     </body>
 </html>
