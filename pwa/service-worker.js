@@ -3,10 +3,10 @@ self.addEventListener('install', event => {
 	event.waitUntil(
 	  caches.open('podcast-cache').then(cache => {
 		return cache.addAll([
-		  '/',
-		  '/index.html',
-		  '/styles.css',
-		  '/app.js',
+		  './',
+		  './index.html',
+		  './styles.css',
+		  './app.js',
 		  // 必要な他のファイル
 		]);
 	  })
